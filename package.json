@@ -1,0 +1,11 @@
+{
+  "name": "cordova-plugin-camera-calibration",
+  "version": "1.0.0",
+  "description": "The lens calibration (focal lengths and optical centre in pixels) of the camera behind a getUserMedia stream, on iOS and Android.",
+  "cordova": {
+    "id": "cordova-plugin-camera-calibration",
+    "platforms": ["ios", "android"]
+  },
+  "keywords": ["ecosystem:cordova", "cordova-ios", "cordova-android", "camera", "calibration", "intrinsics"],
+  "license": "MIT"
+}

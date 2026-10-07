@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-camera-calibration"
+        version="1.0.0">
+
+    <name>CameraCalibration</name>
+    <description>The lens calibration of the camera behind a getUserMedia stream, on iOS and Android.</description>
+    <license>MIT</license>
+    <keywords>cordova,camera,calibration,intrinsics,field of view,ios,android</keywords>
+
+    <repo>https://github.com/pschinis/cordova-plugin-camera-calibration.git</repo>
+
+    <js-module src="www/CameraCalibration.js" name="CameraCalibration">
+        <clobbers target="window.plugins.cameraCalibration" />
+    </js-module>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CameraCalibration">
+                <param name="ios-package" value="CameraCalibration" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CameraCalibration.h" />
+        <source-file src="src/ios/CameraCalibration.m" />
+        <framework src="AVFoundation.framework" />
+        <framework src="CoreMedia.framework" />
+    </platform>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CameraCalibration">
+                <param name="android-package" value="com.strongrfastr.cameracalibration.CameraCalibration" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/CameraCalibration.java" target-dir="src/com/strongrfastr/cameracalibration" />
+    </platform>
+
+</plugin>
