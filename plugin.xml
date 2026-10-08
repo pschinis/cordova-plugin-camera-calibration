@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-camera-calibration"
-        version="1.0.0">
+        version="1.0.1">
 
     <name>CameraCalibration</name>
     <description>The lens calibration of the camera behind a getUserMedia stream, on iOS and Android.</description>

@@ -31,11 +31,16 @@ characteristics:
 - `method: 'intrinsic_calibration'`: `LENS_INTRINSIC_CALIBRATION`, the factory calibration (focal
   lengths and optical centre; in the pre-correction active array's coordinates from Android 9, the
   active array's before). Many, but not all, devices have it.
+- `method: 'intrinsic_focal_length'`: `LENS_INTRINSIC_CALIBRATION` with no optical centre (zeros, as
+  some devices give it, with focal lengths from the lens's specs rather than a calibration): its
+  focal lengths, with the optical centre at the frame's centre.
 - `method: 'focal_length'`: otherwise the focal length and the sensor's physical size, with the
   optical centre at the frame's centre.
 
-Either is mapped onto the stream: the active array cropped (centred) to the stream's shape, scaled
-to its size, and turned upright by `SENSOR_ORIENTATION`.
+Each is mapped onto the stream: the active array cropped (centred) to the stream's shape, scaled
+to its size, and turned upright by `SENSOR_ORIENTATION`. That takes the stream to be the whole
+sensor; a browser cropping a larger format to the size asked for (Chrome's default `resizeMode:
+'crop-and-scale'`; ask for `resizeMode: 'none'`), or a zoom, narrows it without the plugin knowing.
 
 Neither platform models lens distortion (Android's `LENS_DISTORTION` is returned in `native`).
 

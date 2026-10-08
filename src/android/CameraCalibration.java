@@ -86,9 +86,17 @@ public class CameraCalibration extends CordovaPlugin {
             Rect origin = Build.VERSION.SDK_INT >= 28 && preCorrection != null ? preCorrection : active;
             fx = intrinsic[0];
             fy = intrinsic[1];
-            cx = intrinsic[2] + origin.left - active.left;
-            cy = intrinsic[3] + origin.top - active.top;
-            method = "intrinsic_calibration";
+            if (intrinsic[2] > 0 && intrinsic[3] > 0) {
+                cx = intrinsic[2] + origin.left - active.left;
+                cy = intrinsic[3] + origin.top - active.top;
+                method = "intrinsic_calibration";
+            } else {
+                // Some devices fill in only the focal lengths (from the lens's specs, the Galaxy S24's
+                // front camera with no optical centre and no distortion): the centre is the frame's.
+                cx = active.width() / 2.0;
+                cy = active.height() / 2.0;
+                method = "intrinsic_focal_length";
+            }
         } else if (focalLengths != null && focalLengths.length > 0 && physical != null && pixelArray != null && physical.getWidth() > 0) {
             double pixelsPerMm = pixelArray.getWidth() / physical.getWidth();
             fx = fy = focalLengths[0] * pixelsPerMm;
